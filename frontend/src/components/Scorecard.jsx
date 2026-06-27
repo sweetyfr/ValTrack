@@ -101,7 +101,6 @@ function TeamBlock({ players, teamName, won, color, isViewer, onPlayerClick }) {
               const deaths = p.stats?.deaths ?? 0;
               const assists = p.stats?.assists ?? 0;
               const score = p.stats?.score ?? 0;
-              const acs = deaths === 0 ? kills * 200 : Math.round(score / Math.max(1, deaths));
               const kd = deaths === 0 ? kills.toFixed(1) : (kills / deaths).toFixed(2);
               const plants = p.ability_casts?.grenade_cast ?? 0;
               const defuses = p.ability_casts?.ability1_cast ?? 0;
