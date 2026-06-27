@@ -1,0 +1,185 @@
+.match-history { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+
+.no-matches { color: var(--text-muted); font-size: 14px; }
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  padding-right: 2px; /* prevent scrollbar from clipping borders */
+}
+.match-list::-webkit-scrollbar { width: 4px; }
+.match-list::-webkit-scrollbar-track { background: transparent; }
+.match-list::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+.match-entry { display: flex; flex-direction: column; }
+
+.match-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.15s;
+  cursor: pointer;
+  user-select: none;
+}
+.match-row:hover { background: var(--bg-hover); }
+.match-row.expanded {
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom-color: transparent;
+  background: var(--bg-hover);
+}
+
+.expand-icon {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.match-row:hover .expand-icon { color: var(--text-secondary); }
+
+.result-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.result-bar.win { background: var(--win); }
+.result-bar.loss { background: var(--loss); }
+
+.match-win { border-left-color: rgba(74,222,128,0.2); }
+.match-loss { border-left-color: rgba(248,113,113,0.2); }
+
+.match-agent { flex-shrink: 0; }
+
+.agent-img {
+  width: 40px; height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: var(--bg-card);
+}
+
+.agent-placeholder {
+  width: 40px; height: 40px;
+  border-radius: 6px;
+  background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.match-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+
+.match-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+.match-map {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.match-mode { font-size: 10px; color: var(--text-muted); text-transform: capitalize; }
+
+.match-bottom { display: flex; align-items: center; gap: 8px; }
+
+.match-agent-name { font-size: 12px; color: var(--text-secondary); }
+.match-date { font-size: 11px; color: var(--text-muted); }
+
+.match-kda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.kda-score { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; }
+.kda-score .k { color: var(--text-primary); }
+.kda-score .d { color: var(--loss); }
+.kda-score .a { color: var(--text-secondary); }
+.kda-score .sep { color: var(--text-muted); margin: 0 1px; }
+
+.kda-ratio { font-size: 10px; color: var(--text-muted); }
+
+.match-hs {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px; flex-shrink: 0; min-width: 36px;
+}
+.hs-value { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--accent); }
+.hs-lbl { font-size: 10px; color: var(--text-muted); }
+
+.match-rounds {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px; flex-shrink: 0; min-width: 30px;
+}
+.match-rounds span:first-child { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-secondary); }
+.rnd-lbl { font-size: 10px; color: var(--text-muted); }
+
+/* ── Match history header row ── */
+.mh-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mh-showing {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Role filter ── */
+.role-filter {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.role-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  letter-spacing: 0.3px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.role-btn:hover { color: var(--text-secondary); border-color: var(--border-strong); }
+.role-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ── Load More button ── */
+.load-more-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+.load-more-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}

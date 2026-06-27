@@ -1,0 +1,189 @@
+.scorecard {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+  animation: fadeUp 0.2s ease;
+}
+
+/* Meta bar */
+.scorecard-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.sc-map {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sc-score {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sc-team-win { color: var(--win); }
+.sc-team-loss { color: var(--loss); }
+.sc-score-sep { color: var(--text-muted); }
+
+.sc-mode {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Teams */
+.sc-team { border-bottom: 1px solid var(--border); }
+.sc-team:last-child { border-bottom: none; }
+
+.sc-team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.sc-team-blue .sc-team-header { background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59,130,246,0.15); }
+.sc-team-red  .sc-team-header { background: rgba(255, 70,  85,  0.08); border-bottom: 1px solid rgba(255,70,85,0.15); }
+
+.sc-team-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sc-team-blue .sc-team-name { color: #60a5fa; }
+.sc-team-red  .sc-team-name { color: var(--accent); }
+
+.sc-team-result {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+.sc-team-result.win  { background: var(--win-bg);  color: var(--win); }
+.sc-team-result.loss { background: var(--loss-bg); color: var(--loss); }
+
+/* Table */
+.sc-table-wrap { overflow-x: auto; }
+
+.sc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 560px;
+}
+
+.sc-table thead tr {
+  background: var(--bg-secondary);
+}
+
+.sc-table th {
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.sc-table th.col-player { text-align: left; padding-left: 8px; }
+.sc-table th.col-agent  { width: 36px; padding: 6px 4px; }
+
+.sc-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.sc-table tbody tr:last-child { border-bottom: none; }
+.sc-table tbody tr:hover { background: var(--bg-hover); }
+
+/* Highlighted row for the searched player */
+.sc-row-viewer {
+  background: rgba(255, 70, 85, 0.05) !important;
+  border-left: 2px solid var(--accent) !important;
+}
+.sc-row-viewer:hover { background: rgba(255, 70, 85, 0.09) !important; }
+
+.sc-table td {
+  padding: 7px 10px;
+  text-align: center;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+/* Agent cell */
+.sc-agent-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.sc-agent-fallback {
+  width: 28px; height: 28px;
+  background: var(--bg-hover);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 0 auto;
+}
+
+/* Player cell */
+.col-player { text-align: left !important; min-width: 160px; }
+
+.sc-player-btn {
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.sc-player-btn:hover .sc-player-name { color: var(--accent); text-decoration: underline; }
+
+.sc-player-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.sc-player-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.sc-agent-name {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* Stat cells */
+.col-acs { color: var(--text-primary) !important; font-weight: 600; }
+.col-k   { color: var(--text-primary) !important; font-weight: 600; }
+.sc-deaths { color: var(--loss) !important; }
+.kd-pos  { color: var(--win) !important; font-weight: 600; }
+.kd-neg  { color: var(--loss) !important; }

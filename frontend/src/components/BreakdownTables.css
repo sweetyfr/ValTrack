@@ -1,0 +1,116 @@
+.breakdown-tables { display: flex; flex-direction: column; gap: 16px; min-width: 0; overflow: hidden; }
+
+.bt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bt-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.bt-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.3px;
+}
+.bt-tab:hover { color: var(--text-secondary); }
+.bt-tab.active {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.bt-scroll { overflow-x: auto; }
+
+.bt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 400px;
+}
+
+.bt-table thead tr {
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.bt-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.bt-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.bt-table th.sortable:hover { color: var(--text-secondary); }
+.bt-table th.sorted { color: var(--text-primary); }
+
+.sort-arrow { font-size: 10px; opacity: 0.6; }
+.bt-table th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+
+.bt-table td {
+  padding: 9px 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.bt-table tbody tr:last-child td { border-bottom: none; }
+
+.bt-table tbody tr {
+  transition: background 0.12s;
+}
+.bt-table tbody tr:hover td { background: var(--bg-secondary); }
+
+.col-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}
+
+.map-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bt-agent-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.cell-win  { color: var(--win)  !important; font-weight: 600; }
+.cell-loss { color: var(--loss) !important; font-weight: 600; }
+
+.wl-counts {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
+}

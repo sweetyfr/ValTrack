@@ -1,0 +1,146 @@
+/* ── Page shell ─────────────────────────────────────────────────────────────── */
+.profile-page {
+  min-height: 100vh;
+  padding: 24px 24px 48px;
+}
+
+/* Single flex column — gap is the ONLY spacing source between sections */
+.profile-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.back-link {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: 0;
+  display: inline-block;
+  transition: color 0.15s;
+  align-self: flex-start; /* don't stretch to full width */
+}
+.back-link:hover { color: var(--text-primary); }
+
+/* ── Main two-column grid (left panel | match history) ─────────────────────── */
+.profile-main-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* Both columns are flex stacks; gap is set here so every component is even */
+.col-left,
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0; /* prevent flex children overflowing */
+}
+
+/* Last card in left column grows to fill remaining height */
+.col-left > :last-child {
+  flex: 1;
+}
+
+/* ── Sub-grid (rank history + comparison) ──────────────────────────────────── */
+/* auto-fit: 1 item → full width, 2 items → side by side ≥360px each          */
+.profile-sub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+/* ── Loading & error states ────────────────────────────────────────────────── */
+.profile-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.profile-error {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+
+.error-icon {
+  width: 52px; height: 52px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.profile-error h2 { font-size: 24px; color: var(--text-primary); }
+
+.profile-error p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  max-width: 360px;
+}
+
+.back-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+.back-btn:hover { background: var(--bg-hover); }
+
+.matches-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.no-data-msg {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+/* ── Responsive breakpoints ────────────────────────────────────────────────── */
+
+/* Tablet: collapse main grid to single column */
+@media (max-width: 860px) {
+  .profile-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sub-grid: collapse when there isn't room for two 360px columns */
+@media (max-width: 760px) {
+  .profile-sub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .profile-page  { padding: 16px 16px 32px; }
+  .profile-inner { gap: 12px; }
+}

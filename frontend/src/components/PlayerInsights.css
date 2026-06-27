@@ -1,0 +1,233 @@
+.insights-section {
+  /* spacing is handled by profile-inner gap — no margin needed here */
+}
+
+.insights-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.insights-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.insights-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* three cards side by side */
+.insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .insights-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .overview-card {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+  .overview-card {
+    grid-column: auto;
+  }
+}
+
+/* Shared card */
+.insight-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agent-card,
+.map-card {
+  justify-content: space-between;
+}
+
+.insight-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Agent card ── */
+.agent-highlight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agent-hl-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.agent-hl-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.agent-hl-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.agent-hl-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Map card ── */
+.map-highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-hl-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.map-hl-img {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  opacity: 0.85;
+}
+
+.map-hl-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Stat pills ── */
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  min-width: 44px;
+}
+
+.pill-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.pill-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.pill-accent .pill-value { color: var(--accent); }
+.pill-win   .pill-value  { color: var(--win); }
+.pill-loss  .pill-value  { color: var(--loss); }
+
+/* ── Win bar ── */
+.win-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.win-bar-track {
+  height: 4px;
+  background: var(--loss-bg);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.win-bar-fill {
+  height: 100%;
+  background: var(--win);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.win-bar-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Overview card ── */
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  flex: 1;
+}
+
+.overview-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+
+.ov-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ov-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ov-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ov-win    { color: var(--win) !important; }
+.ov-loss   { color: var(--loss) !important; }
+.ov-accent { color: var(--accent) !important; }
