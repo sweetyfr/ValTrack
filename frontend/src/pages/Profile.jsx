@@ -102,7 +102,7 @@ export default function Profile() {
     };
 
     fetchAll();
-  }, [decodedName, decodedTag]);
+  }, [decodedName, decodedTag, addFavourite]);
 
   if (loading) {
     return (

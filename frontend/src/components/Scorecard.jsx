@@ -100,11 +100,9 @@ function TeamBlock({ players, teamName, won, color, isViewer, onPlayerClick }) {
               const kills = p.stats?.kills ?? 0;
               const deaths = p.stats?.deaths ?? 0;
               const assists = p.stats?.assists ?? 0;
-              const acs = deaths === 0 ? kills * 200 : Math.round(p.stats?.score / Math.max(1, deaths));
-              // ACS = combat score / rounds played (approximate since rounds aren't per-player)
               const score = p.stats?.score ?? 0;
+              const acs = deaths === 0 ? kills * 200 : Math.round(score / Math.max(1, deaths));
               const kd = deaths === 0 ? kills.toFixed(1) : (kills / deaths).toFixed(2);
-              const fb = p.stats?.headshots ?? 0; // first bloods not in v3; show headshots instead
               const plants = p.ability_casts?.grenade_cast ?? 0;
               const defuses = p.ability_casts?.ability1_cast ?? 0;
               const viewer = isViewer(p);

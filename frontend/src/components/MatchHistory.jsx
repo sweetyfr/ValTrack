@@ -13,7 +13,7 @@ export default function MatchHistory({ matches, rawMatches, viewerName, viewerTa
 
   // Fetch agent→role map once from the cached backend endpoint
   useEffect(() => {
-    fetch("http://localhost:5001/api/agents")
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5001/api"}/agents`)
       .then((r) => r.json())
       .then((data) => {
         const map = {};
