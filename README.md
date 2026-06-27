@@ -2,7 +2,7 @@
 
 A full-stack Valorant player analytics dashboard. Search any player by Riot ID to view their rank, last 50 matches, KDA trends, agent/map breakdowns, performance insights, and a downloadable stat card.
 
-**Live Demo:** _[Add your Vercel URL here]_  
+**Live Demo:** https://val-track-zeta.vercel.app  
 **Source:** github.com/sweetyfr/ValTrack
 
 ---

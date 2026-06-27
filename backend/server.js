@@ -71,12 +71,12 @@ app.get("/api/mmr/:region/:name/:tag", async (req, res) => {
 });
 
 // ─── GET MATCH HISTORY (paginated) ───────────────────────────────────────────
-const PAGE_CAP = 15; // safety cap: never fetch more than 15 pages
+const PAGE_CAP = 5; // safety cap on free tier
 
 app.get("/api/matches/:region/:name/:tag", async (req, res) => {
   const { region, name, tag } = req.params;
   const mode       = req.query.mode || "competitive";
-  const maxMatches = Math.min(parseInt(req.query.size || "50", 10), 50);
+  const maxMatches = Math.min(parseInt(req.query.size || "20", 10), 20);
 
   const cacheKey = `matches-${region}-${name}-${tag}-${mode}-${maxMatches}`;
   const cached = getCached(cacheKey);

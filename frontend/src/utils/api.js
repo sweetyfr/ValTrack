@@ -8,7 +8,7 @@ export const api = {
 
   // Fetch last 50 matches
   getMatches: (region, name, tag, mode = "competitive") =>
-    axios.get(`${BASE}/matches/${region}/${name}/${tag}`, { params: { mode, size: 50 } }),
+    axios.get(`${BASE}/matches/${region}/${name}/${tag}`, { params: { mode, size: 20 } }),
 
   getMMRHistory: (region, name, tag) =>
     axios.get(`${BASE}/mmr-history/${region}/${name}/${tag}`),
