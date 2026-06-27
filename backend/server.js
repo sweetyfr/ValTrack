@@ -71,54 +71,27 @@ app.get("/api/mmr/:region/:name/:tag", async (req, res) => {
 });
 
 // ─── GET MATCH HISTORY (paginated) ───────────────────────────────────────────
-const PAGE_CAP = 5; // safety cap on free tier
-
 app.get("/api/matches/:region/:name/:tag", async (req, res) => {
   const { region, name, tag } = req.params;
-  const mode       = req.query.mode || "competitive";
-  const maxMatches = Math.min(parseInt(req.query.size || "20", 10), 20);
+  const mode = req.query.mode || "competitive";
 
-  const cacheKey = `matches-${region}-${name}-${tag}-${mode}-${maxMatches}`;
+  const cacheKey = `matches-${region}-${name}-${tag}-${mode}`;
   const cached = getCached(cacheKey);
   if (cached) return res.json(cached);
 
   const url = `${HENRIK_BASE}/v3/matches/${region}/${encodeURIComponent(name)}/${encodeURIComponent(tag)}`;
-  console.log("\n🎮 MATCHES REQUEST:", url, `(up to ${maxMatches})`);
+  console.log("\n🎮 MATCHES REQUEST:", url);
 
   try {
-    let allMatches = [];
-    let page       = 0;
-    let offset     = 0;
-    const pageSize = 10;
+    const { data } = await axios.get(url, {
+      headers: { Authorization: HENRIK_API_KEY },
+      params: { mode, size: 10 },
+    });
 
-    while (allMatches.length < maxMatches && page < PAGE_CAP) {
-      const params = { mode, size: pageSize };
-      if (offset > 0) params.start = offset;
+    const matches = data?.data || [];
+    console.log(`  ✅ returning ${matches.length} matches`);
 
-      const { data } = await axios.get(url, {
-        headers: { Authorization: HENRIK_API_KEY },
-        params,
-      });
-
-      const batch = data?.data || [];
-      if (batch.length === 0) break;
-
-      allMatches = allMatches.concat(batch);
-      console.log(`  page ${page}: got ${batch.length} matches (total: ${allMatches.length})`);
-
-      if (batch.length < pageSize) break;
-      offset += batch.length;
-      page++;
-
-      if (allMatches.length < maxMatches) {
-        await new Promise((r) => setTimeout(r, 300));
-      }
-    }
-
-    const trimmed = allMatches.slice(0, maxMatches);
-    console.log(`  ✅ returning ${trimmed.length} total matches`);
-
-    const response = { status: 200, data: trimmed };
+    const response = { status: 200, data: matches };
     setCache(cacheKey, response);
     res.json(response);
   } catch (err) {
